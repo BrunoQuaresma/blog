@@ -1,10 +1,10 @@
 ---
 title: Quick Introduction to JWT using Javascript
 date: "2019-06-20"
-description: "JWT is being heavily used to authenticate the SPAs in the APIs backends, and in this post we will get some introductions to this technique."
+description: "JWT is being used a lot to authenticate SPAs and in this post we will take the first steps."
 ---
 
-JWT(JSON Web Token) is being heavily used to authenticate SPAs(Single Page Applications) in backends(server applications), but before we get started, we should know what a JWT is. I've put a short summary below, but if you need more information, visit the [official JWT website](https://jwt.io/).
+JWT(JSON Web Token) is being used a lot to authenticate SPAs(Single Page Applications) but before we get started, we should know what a JWT is. I've put a short summary below, but if you need more information, visit the [official JWT website](https://jwt.io/).
 
 > JSON Web Token (JWT) is an open standard that defines a compact and self-contained way for securely transmitting information between parties as a JSON object. This information can be verified and trusted because it is digitally signed. JWTs can be signed using a secret or a public/private key...
 
