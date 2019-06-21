@@ -1,5 +1,5 @@
 ---
-title: Quick Introduction to JWT using Javscript
+title: Quick Introduction to JWT using Javascript
 date: "2019-06-20"
 description: "JWT is being heavily used to authenticate the SPAs in the APIs and backends, and in this post we will get some introductions to this technique."
 ---
