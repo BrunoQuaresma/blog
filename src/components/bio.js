@@ -53,7 +53,9 @@ const Bio = () => {
       <p>
         Written by <strong>{author}</strong>
         <br />
-        <p>Sr. Front-end Developer at Fauna</p>
+        <span>Sr. Front-end Developer at Fauna</span>
+        <br />
+        <a href="https://twitter.com/bruno__quaresma">Twitter</a>
       </p>
     </div>
   )
