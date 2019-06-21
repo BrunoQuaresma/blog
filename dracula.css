@@ -132,3 +132,8 @@ pre[class*="language-"] {
 .gatsby-highlight {
   margin-bottom: 1.75rem;
 }
+
+pre > code[class*="language"] {
+  float: left;
+  min-width: 100%;
+}
