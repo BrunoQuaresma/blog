@@ -10,6 +10,8 @@ JWT(JSON Web Token) is being used a lot to authenticate SPAs(Single Page Applica
 
  The process of authentication and validation is very simple, let's see how it happens:
 
+ ![JWT Flow](./jwt-flow.jpg)
+
   1. The SPA sends a login request with the user credentials
   2. The backend verifies that the credentials are valid
   3. If the credentials are valid, the backend will generate a new token using a *payload* containing some user identifier(such as id, or email) and a *secret*.
