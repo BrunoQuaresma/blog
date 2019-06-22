@@ -111,7 +111,8 @@ const books = async (req, res) => {
 ## Security concerns
   - Use your jwt secret as an env variable like `process.env.JWT_SECRET`.
   - Use the expiration time on tokens and cookies. You do not want to have a leaked token living forever.
-  - Do not put sensitive data inside the payload because the token can be decoded by anyone and expose the information.
+  - Do not put sensitive data inside the payload because the token can be easily decoded but no one is able to create a valid token without the secret.
+  - Use a strong secret. You can use some app for this like [https://randomkeygen.com/](https://randomkeygen.com/).
 
 *Example with 1 day expiration:*
 
