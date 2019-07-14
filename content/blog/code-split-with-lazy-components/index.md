@@ -138,12 +138,12 @@ So we're loading the **CodeEditor** only when this code is called and not at bui
 **Code.jsx**
 ```jsx
 import React from "react";
-import CodeEditor from "./CodeEditor";
+import LazyCodeEditor from "./LazyCodeEditor";
 
 const Code = () => (
   <>
     <h1>Code</h1>
-    <CodeEditor />
+    <LazyCodeEditor />
   </>
 );
 
