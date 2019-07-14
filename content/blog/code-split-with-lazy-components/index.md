@@ -4,14 +4,14 @@ date: "2019-07-14"
 description: "Let's learn how to increase our load speed using code splitting and lazy components."
 ---
 
-Often during application development, we do not care much about the size of our bundle, but with the code base growing, we need to think about it not only for speed and performance, but also to take responsibility for data consumption of user. So how do we load our assets as quickly as possible by taking advantage of concurrent browser requests and only when the user needs them?
+Often during application development, we do not care much about the size of our bundle. However, as the code base grows, we need to think about it not only for speed and performance, but also to take responsibility for users' data consumption--especially on mobile devices. So how do we load our assets as quickly as possible, and only when the user needs them, by taking advantage of concurrent browser requests?
 
 ![Number of maximum of simultaneous requests](./requests.png)
 **Font: [https://docs.pushtechnology.com/cloud/latest/manual/html/designguide/solution/support/connection_limitations.html](https://docs.pushtechnology.com/cloud/latest/manual/html/designguide/solution/support/connection_limitations.html)**
 
-A good option for this is to use the **Code Split** technique. This technique consists of split the code into smaller chunks and load them just when they are required. Let's see a use case.
+A good option for this is to use the **Code Split** technique. This technique consists of splitting the code into smaller chunks and loading these chunks only when they are required. Let's see a use case.
 
-In [Fauna Dashboard](https://dashboard.fauna.com) we have pages where we are using code editors and the dependencies for them are not small even after gzip. So we do not want to put this in the main piece and make the first rendering longer / costly than necessary and second, not always the user will access the code editor. For this case, splitting code is a good option and I'll show you how to do it without any headaches, but before we get started, let's code something and run some analysis.
+In [Fauna Dashboard](https://dashboard.fauna.com), we have pages where we are using code editors with heavy dependencies even after gzip. We do not want to put this in the main chunk, because this will make the first rendering longer and more costly than necessary on pages where the code editor is not needed. For this case, splitting code is a good option and I'll show you how to do it without any headaches. To get started, let's code something and run some analyses.
 
 Let's use [create-react-app](https://github.com/facebook/create-react-app) to start a new React project and create the components:
 
@@ -85,7 +85,7 @@ const CodeEditor = () => (
 export default CodeEditor;
 ```
 
-Now let's take a look on how our bundle is generated and how to optimize it using (source-map-explorer)[https://github.com/danvk/source-map-explorer#readme].
+Now let's take a look at how our bundle is generated and how to optimize it using (source-map-explorer)[https://github.com/danvk/source-map-explorer#readme].
 
 ```bash
 yarn add source-map-explorer
@@ -102,11 +102,11 @@ yarn build
 yarn analyze
 ```
 
-After running the analysis, we can see a simple chart in the browser:
+After running the analyses, we can see a simple chart in the browser:
 
 ![Analyze before splitting](./analyze-1.png)
 
-We can also take a look at the time it takes to load the page. For a better comparison I'm loading this page with cache disabled and on a slow 3G connection.
+We can also look at the time it takes to load the page. For a better comparison, I'm loading this page with cache disabled and on a slow 3G connection.
 
 ![Time to load resources in browser](./load-browser.png)
 
@@ -130,10 +130,7 @@ export default function LazyCodeEditor(props) {
 - **React.lazy** allow us to do dynamic imports.
 - **Suspense** will render the component only when it is resolved. You can use the **fallback** props to pass a loader component.
 
-So, we are loading the **CodeEditor** only when this code is called and not at the build time. The **Suspense** component will wait for the resolution of the **CodeEditor** and display it when is resolved and a meanwhile will display the fallback. Now, to see the difference let's import the **LazyCodeEditor** instead of the **CodeEditor** and run some analyzes again.
-
-
-So we're loading the **CodeEditor** only when this code is called and not at build time. The Suspense component will wait for the **CodeEditor** to be resolved and display it, while displaying the fallback. Now, to see the difference, we'll import the **LazyCodeEditor** instead of the **CodeEditor** and run some analysis again.
+So we're loading the **CodeEditor** only when this code is called and not at build time. The **Suspense** component will wait for the **CodeEditor** to be resolved and display it, meanwhile displaying the fallback. Now, to see the difference, we'll import the **LazyCodeEditor** instead of the **CodeEditor** and run some analyses again.
 
 **Code.jsx**
 ```jsx
@@ -155,19 +152,19 @@ yarn build
 yarn analyze
 ```
 
-We can see the `brace` and `react-ace` splitted into a different chunk:
+We can see the `brace` and `react-ace` split into a different chunk:
 
 ![Analyze after splitting](./analyze-2.png)
 
-And see decrease our first load time.
+And we can see that initial load time has decreased.
 
 ![Time to load resources in browser after splitting](./load-browser-2.png)
 
-Our app only loads the chucks related to the code-editor when the user needs:
+Our app only loads the chunks related to the code-editor when the user needs them:
 
 ![Loading chuncks to code editor](./code-page.png)
 
-Now we have an app which uses **Code Splitting** to have a better performance and user experience as well. I hope you have enjoyed this article and it has been useful to you. Thanks for reading!
+Now, we have an app which uses **Code Splitting** to have better performance and user experience as well. I hope you have enjoyed this article and it has been useful to you. Thanks for reading!
 
 #### References
 - [https://reactjs.org/docs/code-splitting.html](https://reactjs.org/docs/code-splitting.html)
