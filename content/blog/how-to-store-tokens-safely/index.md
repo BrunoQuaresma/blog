@@ -12,154 +12,39 @@ Cookies are a good tool for this scenario, but of course you should follow some 
 
 Since the cookie is not available on client side, we need to create some backend logic to fetch the token and store in memory. You can create a BFF(backend for frontends) using a web framework like Rails, Django, Phoenix, Laravel, etc. or you can use lambdas which are very easy and fast to move on. I recommend that you use Netlify Functions or Zeit. Let's see how it looks like.
 
-### User login/register flow
+### Login Flow
 
-![user login or register flow](./login-or-register-flow_1.svg)
+![Login Flow](./login-flow.png)
 
-The flow for login and register are similar so I put both in the same explanation.
+In this flow what we are doing is creating a token and storing it in a httpOnly cookie to be protected by our server side preventing it to be accessed from malicious front-end/client scripts. After that, the app can stores the token in memory and use it to run your operations. 
 
-1. **User** access the register/login page.
-2. **Client** sends the form data to the endpoint.
-3. **Lambda** registers or login the user, generates a token, create a `httpOnly` cookie using the token as value and returns the token on payload to the client.
-4. **Client** receives the response. Saves user info and token in memory.
-5. **Client** redirects to **Private Area**.
+*Notice the function is acting as the cookie guardian where is stored the token.*
 
-### User access private area directly
+You can see a more detailed explanation bellow:
 
-![user access private area directly flow](./user-private-area.svg)
+1. User access the login page.
+2. Send the credentials to login function.
+3. The login function validates the credentials and creates a token if the credentials are valid. If it is not, it returns an unauthorized error.
+4. If it is valid, the function saves the token in the cookie as httpOnly so, only servers can access it preventing it to be accessed from malicious front-end/client scripts.
+5. (6 and 7) The function returns the token and the app saves it in memory.
 
-1. **User** access **Private Area**.
-2. **Private Area** requests user data on `/profile`(you can call "verify", "check" or something that makes sense to you) if there is no user in memory.
-3. **Lambda** checks if there is a token cookie, check if the token stills valid, if true, returns the user data with the token(here, you maybe want to refresh the token as well).
-4. **Private Area** receives the response. Saves user info and token in memory.
-5. **Private Area** render *my-orders* route.
 
-To make it easier to understand here is some code samples using React and Netlify Functions.
+Ok, so if my user refreshs the page it will loose the token and crash my app so what we should do? We need to validate the user session trough a validate function.
 
-**ProtectedArea.jsx**
-```jsx
-const ProtectedArea = ({ history }) => {
-  const { user, fetchUser, isLoading, error } = useUser()
+### Validation Flow
 
-  useEffect(() => {
-    if (!user) fetchUser()
-  }, [user, fetchUser])
+![Validate Flow](./validate-flow.png)
 
-  useEffect(() => {
-    if(error && error.code === 401) {
-      history.push('/login')
-    }
-    // ...
-  }, [error, history])
+In this flow we need to check if the user is already logged in. So the app send a request to the validate function which will check if there is any token stored in the cookie and if it is valid. If it is valid, the validate functions returns it to the app which will store it in the memory. Like we did before, I put it in a more descriptive way right bellow:
 
-  if (isLoading) return <FullPageLoader></FullPageLoader>
+1. User access the app.
+2. The app validates the user session.
+3. (4 and 5) The function check if there is a token and if it is valid. If it is not, it returns an unauthorized error.
+6. If it is valid, the function returns the token and the app saves it in memory. 
 
-  return (
-    <Switch>
-      <Route exact path="/my-orders" component={MyOrdersPage} />
-    </Switch>
-  )
-}
+Now we know how to improve your security storing token safely we can implement it. In the next article we are going to implement it using JS, React and FaunaDB. I hope this article is helpful to you and I'll let some nice references bellow for further reading.
 
-export default ProtectedArea
-```
-
-**lambda_login.js**
-```jsx
-const cookie = require('cookie')
-const hour = 3600000
-const oneWeek = 1 * 24 * hour
-
-exports.handler = async event => {
-  try {
-    const user = login()
-    const token = createToken(user)
-
-    return {
-      statusCode: 200,
-      body: JSON.stringify({ user, token }),
-      headers: {
-        'Set-Cookie': cookie.serialize(name, val, {
-          secure: process.env.NODE_ENV === 'production',
-          httpOnly: true,
-          path: '/',
-          maxAge
-        })
-      }
-    }
-  } catch {
-    // ...
-  }
-}
-```
-
-**lambda_register.js**
-```jsx
-const cookie = require('cookie')
-const hour = 3600000
-const oneWeek = 1 * 24 * hour
-
-exports.handler = async event => {
-  try {
-    const user = register(event.body)
-    const token = createToken(user)
-
-    return {
-      statusCode: 201,
-      body: JSON.stringify({ user, token }),
-      headers: {
-        'Set-Cookie': cookie.serialize(name, val, {
-          secure: process.env.NODE_ENV === 'production',
-          httpOnly: true,
-          path: '/',
-          maxAge
-        })
-      }
-    }
-  } catch {
-    // ...
-  }
-}
-```
-
-**lambda_profile.js**
-```jsx
-const cookie = require('cookie')
-const hour = 3600000
-const oneWeek = 1 * 24 * hour
-
-exports.handler = async event => {
-  try {
-    const { token } = cookie.parse(event.headers.cookie || '')
-
-    if (!token) {
-      return {
-        statusCode: 401,
-        body: 'Unauthorized'
-      }
-    }
-
-    const user = getUserByToken(token)
-
-    return {
-      statusCode: 201,
-      body: JSON.stringify({ user, token }),
-      headers: {
-        'Set-Cookie': cookie.serialize(name, val, {
-          secure: process.env.NODE_ENV === 'production',
-          httpOnly: true,
-          path: '/',
-          maxAge
-        })
-      }
-    }
-  } catch {
-    // ...
-  }
-}
-```
-
-Hope this article is helpful to you. Please let me know if you find something wrong with this article or if there is a better way to safely store tokens. Thanks!
+Thanks for your time, see ya!
 
 ## References
 - [https://www.rdegges.com/2018/please-stop-using-local-storage/](https://www.rdegges.com/2018/please-stop-using-local-storage/)
