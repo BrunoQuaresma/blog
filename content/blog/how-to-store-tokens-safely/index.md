@@ -10,7 +10,7 @@ Before we get started, know that using local storage is not a good idea. Malicio
 
 The easiest way of storing a token safely is by just keeping it in memory. This option has some pitfalls in UX. So what should we do?
 
-Cookies are a good tool for this scenario, but of course you should follow some guidelines to make it safe such as set the cookie as `secure`, `httpOnly` and `SameSite=strict`. The `secure` flag ensures that the cookie is sent only over `https` connections, the `httpOnly` makes the cookie inaccessible on client side so malicious scripts cannot see your sensitive data in `document.cookies` and `SameSite=strict` blocks cookies from being sent to an external domain.
+Cookies are a good tool for this scenario. Of course, you should follow some guidelines to make it safe to do so, such as set the cookie as `secure`, `httpOnly`, and `SameSite=strict`. The `secure` flag ensures that the cookie is sent only over `https` connections, the `httpOnly` flag makes the cookie inaccessible on the client, so malicious scripts cannot see your sensitive data in `document.cookies`, and the `SameSite=strict` flag blocks cookies from being sent to an external domain.
 
 Since the cookie is not available on client side, we need to create some backend logic to fetch the token and store in memory. You can create a BFF(backend for frontends) using a web framework like Rails, Django, Phoenix, Laravel, etc. or you can use lambdas which are very easy and fast to move on. I recommend that you use Netlify Functions or Zeit. Let's see how it looks like.
 
@@ -54,6 +54,5 @@ Thanks for your time, see ya!
 - [https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF))
 - [https://www.owasp.org/index.php/HttpOnly](https://www.owasp.org/index.php/HttpOnly)
 - [https://auth0.com/docs/security/store-tokens](https://auth0.com/docs/security/store-tokens)
-
 
 
