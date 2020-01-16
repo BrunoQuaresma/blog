@@ -31,7 +31,7 @@ Here is a more detailed explanation:
 5. (6 and 7) The function returns the token and the app saves it in memory.
 
 
-Ok, so if my user refreshs the page it will loose the token and crash my app so what we should do? We need to validate the user session trough a validate function.
+One problem: if the user refreshes the page, their browser loses the token and they become unauthenticated, which might crash my app. What we should do? We need to validate the user session through a validate function.
 
 ### Validation Flow
 
