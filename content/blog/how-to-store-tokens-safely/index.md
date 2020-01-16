@@ -41,7 +41,7 @@ In this flow we need to check if the user is already logged in. So the app send 
 
 1. A user accesses the app.
 2. The app validates the user session.
-3. (4 and 5) The function check if there is a token and if it is valid. If it is not, it returns an unauthorized error.
+3. (4 and 5) The function checks if an authorization cookie exists, that the cookie contains a token, and whether the token is valid. If none of these things are true, the function returns an "unauthorized" error.
 6. If it is valid, the function returns the token and the app saves it in memory. 
 
 Now we know how to improve your security storing token safely we can implement it. In the next article we are going to implement it using JS, React and FaunaDB. I hope this article is helpful to you and I'll let some nice references bellow for further reading.
@@ -54,4 +54,3 @@ Thanks for your time, see ya!
 - [https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF))
 - [https://www.owasp.org/index.php/HttpOnly](https://www.owasp.org/index.php/HttpOnly)
 - [https://auth0.com/docs/security/store-tokens](https://auth0.com/docs/security/store-tokens)
-
