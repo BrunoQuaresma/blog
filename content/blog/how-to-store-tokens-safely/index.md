@@ -20,7 +20,7 @@ Since the cookie is not available on the client, we need to create some backend 
 
 In this flow, we creating a token and storing it in a `httpOnly` cookie, to be protected by our backend, preventing it from being accessed by malicious front-end/client scripts. After that, the app can store the token in memory and use it to run your logic. 
 
-*Notice the function is acting as the cookie guardian where is stored the token.*
+*Notice that the function is acting as the cookie guardian where the token is stored.*
 
 You can see a more detailed explanation bellow:
 
