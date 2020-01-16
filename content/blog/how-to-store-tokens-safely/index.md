@@ -24,10 +24,10 @@ In this flow, we creating a token and storing it in a `httpOnly` cookie, to be p
 
 Here is a more detailed explanation:
 
-1. User access the login page.
-2. Send the credentials to login function.
-3. The login function validates the credentials and creates a token if the credentials are valid. If it is not, it returns an unauthorized error.
-4. If it is valid, the function saves the token in the cookie as httpOnly so, only servers can access it preventing it to be accessed from malicious front-end/client scripts.
+1. A user accesses the login page.
+2. When the user attempts to authenticate, the credentials are sent to the login function.
+3. The login function validates the credentials and creates a token if the credentials are valid. If the credentials are not valid, the login function returns an "unauthorized" error.
+4. For valid credentials, the login function creates an `httpOnly` cookie, which prevents access from malicious front-end/client scripts.
 5. (6 and 7) The function returns the token and the app saves it in memory.
 
 
@@ -37,7 +37,7 @@ Ok, so if my user refreshs the page it will loose the token and crash my app so 
 
 ![Validate Flow](./validate-flow.png)
 
-In this flow we need to check if the user is already logged in. So the app send a request to the validate function which will check if there is any token stored in the cookie and if it is valid. If it is valid, the validate functions returns it to the app which will store it in the memory. Like we did before, I put it in a more descriptive way right bellow:
+We need to check if the user is already logged in. The app sends a request to the validate function, which checks if there is any token stored in the cookie and if it is valid. If the token is valid, the validate function returns it to the app, which stores the token in memory. Here is a more detailed description:
 
 1. A user accesses the app.
 2. The app makes a request to the validate function.
