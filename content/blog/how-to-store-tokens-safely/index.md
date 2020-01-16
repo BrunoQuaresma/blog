@@ -40,7 +40,7 @@ Ok, so if my user refreshs the page it will loose the token and crash my app so 
 In this flow we need to check if the user is already logged in. So the app send a request to the validate function which will check if there is any token stored in the cookie and if it is valid. If it is valid, the validate functions returns it to the app which will store it in the memory. Like we did before, I put it in a more descriptive way right bellow:
 
 1. A user accesses the app.
-2. The app validates the user session.
+2. The app makes a request to the validate function.
 3. (4 and 5) The function checks if an authorization cookie exists, that the cookie contains a token, and whether the token is valid. If none of these things are true, the function returns an "unauthorized" error.
 6. If it is valid, the function returns the token and the app saves it in memory. 
 
