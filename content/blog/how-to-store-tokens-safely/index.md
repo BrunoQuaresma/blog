@@ -22,7 +22,7 @@ In this flow, we creating a token and storing it in a `httpOnly` cookie, to be p
 
 *Notice that the function is acting as the cookie guardian where the token is stored.*
 
-You can see a more detailed explanation bellow:
+Here is a more detailed explanation:
 
 1. User access the login page.
 2. Send the credentials to login function.
