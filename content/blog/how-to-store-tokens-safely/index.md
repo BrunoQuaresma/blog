@@ -39,7 +39,7 @@ Ok, so if my user refreshs the page it will loose the token and crash my app so 
 
 In this flow we need to check if the user is already logged in. So the app send a request to the validate function which will check if there is any token stored in the cookie and if it is valid. If it is valid, the validate functions returns it to the app which will store it in the memory. Like we did before, I put it in a more descriptive way right bellow:
 
-1. User access the app.
+1. A user accesses the app.
 2. The app validates the user session.
 3. (4 and 5) The function check if there is a token and if it is valid. If it is not, it returns an unauthorized error.
 6. If it is valid, the function returns the token and the app saves it in memory. 
@@ -54,5 +54,4 @@ Thanks for your time, see ya!
 - [https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF))
 - [https://www.owasp.org/index.php/HttpOnly](https://www.owasp.org/index.php/HttpOnly)
 - [https://auth0.com/docs/security/store-tokens](https://auth0.com/docs/security/store-tokens)
-
 
