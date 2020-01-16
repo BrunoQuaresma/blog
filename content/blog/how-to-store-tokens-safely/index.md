@@ -44,7 +44,7 @@ In this flow we need to check if the user is already logged in. So the app send 
 3. (4 and 5) The function checks if an authorization cookie exists, that the cookie contains a token, and whether the token is valid. If none of these things are true, the function returns an "unauthorized" error.
 6. If it is valid, the function returns the token and the app saves it in memory. 
 
-Now we know how to improve your security storing token safely we can implement it. In the next article we are going to implement it using JS, React and FaunaDB. I hope this article is helpful to you and I'll let some nice references bellow for further reading.
+Now that we know how to improve your security by storing a token safely, we can implement it. In the next article, I'll show you how using JS, React and FaunaDB. I hope this article has been helpful to you. For further information, check out the following references:
 
 Thanks for your time, see ya!
 
