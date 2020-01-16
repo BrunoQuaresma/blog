@@ -12,7 +12,7 @@ The easiest way of storing a token safely is by just keeping it in memory. This 
 
 Cookies are a good tool for this scenario. Of course, you should follow some guidelines to make it safe to do so, such as set the cookie as `secure`, `httpOnly`, and `SameSite=strict`. The `secure` flag ensures that the cookie is sent only over `https` connections, the `httpOnly` flag makes the cookie inaccessible on the client, so malicious scripts cannot see your sensitive data in `document.cookies`, and the `SameSite=strict` flag blocks cookies from being sent to an external domain.
 
-Since the cookie is not available on client side, we need to create some backend logic to fetch the token and store in memory. You can create a BFF(backend for frontends) using a web framework like Rails, Django, Phoenix, Laravel, etc. or you can use lambdas which are very easy and fast to move on. I recommend that you use Netlify Functions or Zeit. Let's see how it looks like.
+Since the cookie is not available on the client, we need to create some backend logic to fetch the token and store it in memory. You can create a BFF(backend for frontends) using a web framework like Rails, Django, Phoenix, Laravel, etc., or you can use lambdas which are very easy and fast to move on. I recommend that you use Netlify Functions or Zeit. Let's see how it works.
 
 ### Login Flow
 
