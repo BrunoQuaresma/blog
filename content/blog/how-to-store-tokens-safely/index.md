@@ -18,7 +18,7 @@ Since the cookie is not available on the client, we need to create some backend 
 
 ![Login Flow](./login-flow.png)
 
-In this flow what we are doing is creating a token and storing it in a httpOnly cookie to be protected by our server side preventing it to be accessed from malicious front-end/client scripts. After that, the app can stores the token in memory and use it to run your operations. 
+In this flow, we creating a token and storing it in a `httpOnly` cookie, to be protected by our backend, preventing it from being accessed by malicious front-end/client scripts. After that, the app can store the token in memory and use it to run your logic. 
 
 *Notice the function is acting as the cookie guardian where is stored the token.*
 
