@@ -6,7 +6,9 @@ description: "Let's talk about how to store your tokens safely using cookies and
 
 How should tokens be stored safely? It's a common question within the frontend community, and there are a few alternatives. In this post, I'll show you how to do this using cookies and lambdas.
 
-Before we get started, we need to know use local storage is not a good idea, as malicious scripts can iterate over the local storage and send the info to an external API. So if you have any kind of sensitive data there, you're screwed. We also need to know the easiest way of storing a token safely is just keeping it in memory, but this option has some pitfalls in UX. So what should we do?
+Before we get started, know that using local storage is not a good idea. Malicious scripts can iterate over local storage and send the info to an external API. So, if you have any kind of sensitive data there, you're screwed.
+
+The easiest way of storing a token safely is by just keeping it in memory. This option has some pitfalls in UX. So what should we do?
 
 Cookies are a good tool for this scenario, but of course you should follow some guidelines to make it safe such as set the cookie as `secure`, `httpOnly` and `SameSite=strict`. The `secure` flag ensures that the cookie is sent only over `https` connections, the `httpOnly` makes the cookie inaccessible on client side so malicious scripts cannot see your sensitive data in `document.cookies` and `SameSite=strict` blocks cookies from being sent to an external domain.
 
@@ -52,7 +54,6 @@ Thanks for your time, see ya!
 - [https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF))
 - [https://www.owasp.org/index.php/HttpOnly](https://www.owasp.org/index.php/HttpOnly)
 - [https://auth0.com/docs/security/store-tokens](https://auth0.com/docs/security/store-tokens)
-
 
 
 
