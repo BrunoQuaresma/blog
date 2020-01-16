@@ -4,7 +4,7 @@ date: "2019-10-29"
 description: "Let's talk about how to store your tokens safely using cookies and lambdas."
 ---
 
-How to store tokens safely? It's a common question on frontend community and there is some alternatives to this. In this post, I'll show you how to do this using cookies and lambdas.
+How should tokens be stored safely? It's a common question within the frontend community, and there are a few alternatives. In this post, I'll show you how to do this using cookies and lambdas.
 
 Before we get started, we need to know use local storage is not a good idea, as malicious scripts can iterate over the local storage and send the info to an external API. So if you have any kind of sensitive data there, you're screwed. We also need to know the easiest way of storing a token safely is just keeping it in memory, but this option has some pitfalls in UX. So what should we do?
 
@@ -52,7 +52,6 @@ Thanks for your time, see ya!
 - [https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF))
 - [https://www.owasp.org/index.php/HttpOnly](https://www.owasp.org/index.php/HttpOnly)
 - [https://auth0.com/docs/security/store-tokens](https://auth0.com/docs/security/store-tokens)
-
 
 
 
