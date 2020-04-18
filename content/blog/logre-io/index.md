@@ -14,7 +14,7 @@ Usually, I do side projects to learn new things and improve my "product" skills.
 
 <br />
 
-Here is some statistics from Twitter. Impressions: 19.333, Engagements: 1.487.
+Here is some statistics from Twitter, Impressions: 19.333, Engagements: 1.487 and some from the app, Boxes: 778, Logs: 189.
 
 After these two weeks we released the "Accounts" feature which basically allow users to create an account and create private boxes.
 
