@@ -9,6 +9,7 @@ module.exports = {
     },
   },
   plugins: [
+    "gatsby-plugin-twitter",
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
