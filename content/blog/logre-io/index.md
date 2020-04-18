@@ -1,7 +1,7 @@
 ---
-title: Logre.IO
+title: Logre.IO, motivation, statistics, stack and next steps.
 date: "2020-04-18"
-description: "Logre.IO, learnings and next steps."
+description: "In this post I'm going to share with you the motivation, statistics, stack and next steps for Logre.IO."
 ---
 
 ![logre.io website](./website.jpeg) 
