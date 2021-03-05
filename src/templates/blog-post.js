@@ -1,5 +1,4 @@
 import React from "react"
-import { DiscussionEmbed } from "disqus-react"
 import { Link, graphql } from "gatsby"
 
 import Bio from "../components/bio"
@@ -12,11 +11,6 @@ class BlogPostTemplate extends React.Component {
     const post = this.props.data.markdownRemark
     const siteTitle = this.props.data.site.siteMetadata.title
     const { previous, next } = this.props.pageContext
-    const disqusShortname = "brunoquaresma"
-    const disqusConfig = {
-      identifier: post.id,
-      title: post.frontmatter.title,
-    }
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
@@ -67,7 +61,6 @@ class BlogPostTemplate extends React.Component {
             )}
           </li>
         </ul>
-        <DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />
       </Layout>
     )
   }

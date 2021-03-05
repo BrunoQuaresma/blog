@@ -8,7 +8,6 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import Image from "gatsby-image"
-
 import { rhythm } from "../utils/typography"
 
 const Bio = () => {
@@ -53,7 +52,20 @@ const Bio = () => {
       <p>
         Written by <strong>{author}</strong>
         <br />
-        <span>Sr. Front-end Developer at Fauna</span>
+        <span>
+          Creator of{" "}
+          <a
+            href="https://tweetpik.com"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            TweetPik
+          </a>{" "}
+          and Web Developer at{" "}
+          <a href="http://coder.com/" rel="noopener noreferrer" target="_blank">
+            Coder
+          </a>
+        </span>
         <br />
         <a href="https://twitter.com/bruno__quaresma">Twitter</a>
       </p>
