@@ -1,5 +1,5 @@
 ---
-title: Add E2E tests to esure that your main features are working
+title: Add E2E tests to ensure that your main features are working
 date: "2021-03-06"
 description: "Add e2e tests to ensure that your main features are working. This is usually cheap, fast and can prevent major problems."
 ---
